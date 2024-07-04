@@ -27,8 +27,8 @@ def get_logger() -> logging.Logger:
     """logger
     """
     logger = logging.getLogger("user_data")
-    logger.setLevel(logging.INFO)
     logger.propagate = False
+    logger.setLevel(logging.INFO)
 
     stream_handler = logging.StreamHandler()
     stream_handler.setFormatter(RedactingFormatter(list(PII_FIELDS)))
@@ -40,10 +40,11 @@ def get_logger() -> logging.Logger:
 def get_db() -> mysql.connector.connection.MySQLConnection:
     """get database
     """
+    db_name = environ.get("PERSONAL_DATA_DB_NAME")
     username = environ.get("PERSONAL_DATA_DB_USERNAME", "root")
     password = environ.get("PERSONAL_DATA_DB_PASSWORD", "")
     host = environ.get("PERSONAL_DATA_DB_HOST", "localhost")
-    db_name = environ.get("PERSONAL_DATA_DB_NAME")
+   
 
     connect = mysql.connector.connection.MySQLConnection(
         user=username, password=password, host=host, database=db_name)
