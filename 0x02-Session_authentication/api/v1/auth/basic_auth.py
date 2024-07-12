@@ -12,18 +12,12 @@ from models.user import User
 
 
 class BasicAuth(Auth):
-    """_summary_
+    """basic auth class
     """
 
     def extract_base64_authorization_header(self,
                                             authorization_header: str) -> str:
-        """_summary_
-
-        Args:
-                 authorization_header (str): _description_
-
-        Returns:
-                 str: _description_
+        """base 64 auth header
         """
         if authorization_header is None:
             return None
@@ -37,13 +31,7 @@ class BasicAuth(Auth):
 
     def decode_base64_authorization_header(
             self, base64_authorization_header: str) -> str:
-        """_summary_
-
-        Args:
-                 base64_authorization_header (str): _description_
-
-        Returns:
-                  str: _description_
+        """decode the base 64 auth header
         """
         if base64_authorization_header is None:
             return None
@@ -59,11 +47,7 @@ class BasicAuth(Auth):
 
     def extract_user_credentials(
             self, decoded_base64_authorization_header: str) -> (str, str):
-        """_summary_
-
-        Args:
-                                        self (_type_): _description_
-                                        str (_type_): _description_
+        """user credentials
         """
         if decoded_base64_authorization_header is None:
             return (None, None)
@@ -77,10 +61,7 @@ class BasicAuth(Auth):
 
     def user_object_from_credentials(
             self, user_email: str, user_pwd: str) -> TypeVar('User'):
-        """_summary_
-
-        Args:
-                        self (_type_): _description_
+        """user object
         """
         if user_email is None or not isinstance(user_email, str):
             return None
@@ -99,7 +80,7 @@ class BasicAuth(Auth):
             return None
 
     def current_user(self, request=None) -> TypeVar('User'):
-        """_summary_
+        """current user check
         """
         auth_header = self.authorization_header(request)
         if auth_header is not None:

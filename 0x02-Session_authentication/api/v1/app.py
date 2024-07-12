@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Route module for the API
+entry file
 """
 from os import getenv
 from api.v1.views import app_views
@@ -30,10 +30,7 @@ elif AUTH_TYPE == 'session_auth':
 
 @app.before_request
 def before_request():
-    """_summary_
-
-    Returns:
-        _type_: _description_
+    """before request
     """
     if auth is None:
         pass
@@ -53,33 +50,21 @@ def before_request():
 
 @app.errorhandler(404)
 def not_found(error) -> str:
-    """ Not found handler
+    """404 handler
     """
     return jsonify({"error": "Not found"}), 404
 
 
 @app.errorhandler(401)
 def unauthorized(error) -> str:
-    """_summary_
-
-    Args:
-        error (_type_): _description_
-
-    Returns:
-        str: _description_
+    """unauthorized function
     """
     return jsonify({"error": "Unauthorized"}), 401
 
 
 @app.errorhandler(403)
 def forbidden(error) -> str:
-    """_summary_
-
-    Args:
-            error (_type_): _description_
-
-    Returns:
-            str: _description_
+    """forbidden handler
     """
     return jsonify({"error": "Forbidden"}), 403
 

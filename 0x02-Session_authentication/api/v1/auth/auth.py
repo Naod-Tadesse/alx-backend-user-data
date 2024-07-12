@@ -10,18 +10,11 @@ import os
 
 
 class Auth:
-    """_summary_
+    """auth class
     """
 
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
-        """_summary_
-
-        Args:
-            path (str): _description_
-            excluded_paths (List[str]): _description_
-
-        Returns:
-                        bool: _description_
+        """get auth
         """
         if path is None:
             return True
@@ -44,17 +37,11 @@ class Auth:
         return True
 
     def authorization_header(self, request=None) -> str:
-        """_summary_
-
-        Args:
-            request (_type_, optional): _description_. Defaults to None.
-
-        Returns:
-                        str: _description_
+        """check headers
         """
         if request is None:
             return None
-        # get header from the request
+
         header = request.headers.get('Authorization')
 
         if header is None:
@@ -63,16 +50,13 @@ class Auth:
         return header
 
     def current_user(self, request=None) -> TypeVar('User'):
-        """_summary_
+        """current user
         """
 
         return None
 
     def session_cookie(self, request=None):
-        """_summary_
-
-        Args:
-            request (_type_, optional): _description_. Defaults to None.
+        """session cookies
         """
         if request is None:
             return None
